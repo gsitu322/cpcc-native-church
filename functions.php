@@ -48,32 +48,3 @@ if (!function_exists('imic_get_data_by_path')) {
         }
     }
 }
-
-add_action( 'widgets_init', 'child_register_sidebar' );
-
-function child_register_sidebar(){
-    register_sidebar(array(
-        'name' => 'Sidebar 2',
-        'id' => 'sidebar-2',
-        'before_widget' => '<div id="%1$s" class="widget %2$s">',
-        'after_widget' => '</div>',
-        'before_title' => '<h4 class="widgettitle">',
-        'after_title' => '</h4>',
-    ));
-}
-
-add_action( 'widgets_init', 'child_register_sidebar_2' );
-
-function child_register_sidebar_2(){
-    register_sidebar(array(
-        'name' => 'Sidebar 3',
-        'id' => 'sidebar-3',
-        'before_widget' => '<div id="%1$s" class="widget %2$s">',
-        'after_widget' => '</div>',
-        'before_title' => '<h4 class="widgettitle">',
-        'after_title' => '</h4>',
-    ));
-}
-
-
-?>
