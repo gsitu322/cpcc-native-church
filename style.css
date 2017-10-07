@@ -23,3 +23,8 @@
 .footer-widget .featured-sermon:after{
     border-top-color:#F8F7F3;
 }
+
+.widget.widget_child_recent_sermons .sermon-speaker {
+    font-size: 14px;
+    margin-bottom: 0px;
+}

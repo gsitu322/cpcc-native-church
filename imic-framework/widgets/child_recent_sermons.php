@@ -176,7 +176,8 @@ class child_recent_sermons extends WP_Widget {
                     $liFirst .= '</div>
 									</li>';
                 }
-                else if((has_post_thumbnail($post->ID))&&($flag==0)){
+                /** Currently Not using this to render our view */
+                else if((has_post_thumbnail($post->ID))&&($flag==0)&&false){
                     //get the featured image
                     $featured_image_url = wp_get_attachment_url(get_post_thumbnail_id($post->ID));
                     //end
@@ -205,9 +206,11 @@ class child_recent_sermons extends WP_Widget {
                 }
                 else{
                     $liOthers .= '<li class="item sermon">
-                                    <h2 class="sermon-title"><a href="'.get_permalink($post->ID).'">'.$post->post_title.'</a></h2>
-                                    <span class="meta-data"><i class="fa fa-calendar"></i>'.__(' on ','imic-framework-admin').get_the_time(get_option('date_format'),$post->ID).'</span>
+                                    <h2 class="sermon-title"><a href="'.get_permalink($post->ID).'"><i class="fa fa-play-circle"></i>'.$post->post_title.'</a></h2>
+                                    <span class="meta-data">'.__("",'imic-framework-admin').get_the_time(get_option('date_format'),$post->ID).'</span>
+                                    <h2 class="sermon-speaker">' . get_the_term_list($post->ID, "sermons-speakers") . '</h2>
                                 </li>';
+
                 }
                 $flag++;
             }
