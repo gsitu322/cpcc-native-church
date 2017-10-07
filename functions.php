@@ -48,3 +48,16 @@ if (!function_exists('imic_get_data_by_path')) {
         }
     }
 }
+
+/** Override Recent Sermon Widget */
+add_action('after_setup_theme', 'remove_parent_file');
+function remove_parent_file()
+{
+    add_action('widgets_init', 'unregister_recent_sermon_widget');
+}
+
+function unregister_recent_sermon_widget()
+{
+    unregister_widget('recent_sermons');
+}
+require_once(dirname(__FILE__) . '/imic-framework/widgets/child_recent_sermons.php');
