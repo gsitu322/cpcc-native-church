@@ -61,3 +61,28 @@ function unregister_recent_sermon_widget()
     unregister_widget('recent_sermons');
 }
 require_once(dirname(__FILE__) . '/imic-framework/widgets/child_recent_sermons.php');
+
+if (!function_exists('imic_register_newmeta_box')) {
+    add_action('admin_init', 'imic_register_newmeta_box');
+    function imic_register_newmeta_box() {
+        // Check if plugin is activated or included in theme
+        if (!class_exists('RW_Meta_Box'))
+            return;
+        $prefix = 'imic_';
+        $meta_box = array(
+            'id' => 'template-custom1',
+            'title' => esc_html__("Custom Meta Box", 'vestige'),
+            'pages' => array('page'),
+            'context' => 'normal',
+            'fields' => array(
+                array(
+                    'name' => 'Sample meta text box',
+                    'id' => $prefix . 'sample_textbox',
+                    'desc' => esc_html__("Sample text meta box description.", 'vestige'),
+                    'type' => 'text',
+                ),
+            )
+        );
+        new RW_Meta_Box($meta_box);
+    }
+}
