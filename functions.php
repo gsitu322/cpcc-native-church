@@ -62,17 +62,19 @@ function unregister_recent_sermon_widget()
 }
 require_once(dirname(__FILE__) . '/imic-framework/widgets/child_recent_sermons.php');
 
-if (!function_exists('imic_register_newmeta_box')) {
-    add_action('admin_init', 'imic_register_newmeta_box');
-    function imic_register_newmeta_box() {
+/** Ministry Meta Boxes */
+if (!function_exists('imic_register_ministry_meta_box')) {
+    add_action('admin_init', 'imic_register_ministry_meta_box');
+    function imic_register_ministry_meta_box() {
         // Check if plugin is activated or included in theme
         if (!class_exists('RW_Meta_Box'))
             return;
         $prefix = 'imic_';
 
+        /** @var array $meta_box Ministry Meta Box*/
         $meta_box =  array(
-            'id' => 'template-home25',
-            'title' => __('Featured Blocks Area', 'framework'),
+            'id' => 'template-home-ministry',
+            'title' => __('Featured Ministry Area', 'framework'),
             'pages' => array('page'),
             'show' => array(
                 // With all conditions below, use this logical operator to combine them. Default is 'OR'. Case insensitive. Optional.
@@ -84,7 +86,7 @@ if (!function_exists('imic_register_newmeta_box')) {
             'fields' => array(
                 array(
                     'name'      => __('Number of columns', 'framework'),
-                    'id'        => $prefix . 'imic_featured_block_num_rows_2',
+                    'id'        => $prefix . 'imic_featured_block_num_rows_ministry',
                     'desc'      => __('Number of columns', 'framework'),
                     'type'      => 'select',
                     'options'   => [
@@ -96,7 +98,7 @@ if (!function_exists('imic_register_newmeta_box')) {
                 ),
                 array(
                     'name' => __('Switch for featured blocks', 'framework'),
-                    'id' => $prefix . 'imic_featured_blocks_2',
+                    'id' => $prefix . 'imic_featured_blocks_ministry',
                     'desc' => __("Select enable or disable to show/hide featured blocks.", 'framework'),
                     'type' => 'select',
                     'options' => array(
@@ -107,14 +109,14 @@ if (!function_exists('imic_register_newmeta_box')) {
                 ),
                 array(
                     'name' => __('Featured Blocks to show on home page', 'framework'),
-                    'id' => $prefix . 'home_featured_blocks_2',
+                    'id' => $prefix . 'home_featured_blocks_ministry',
                     'desc' => __("Enter the Posts/Pages comma separated ID to show featured blocks on Home page. example - 1,2,3", 'framework'),
                     'type' => 'text',
                     'std' => ''
                 ),
                 array(
                     'name' => __('Title for featured blocks', 'framework'),
-                    'id' => $prefix . 'home_row_featured_blocks_2',
+                    'id' => $prefix . 'home_row_featured_blocks_ministry',
                     'desc' => __("Enter the title for featured blocks. Add more as per the entered page IDs", 'framework'),
                     'type' => 'text',
                     'clone' => true,
@@ -122,21 +124,192 @@ if (!function_exists('imic_register_newmeta_box')) {
                 ),
                 array(
                     'name' => __('Title for first featured block', 'framework'),
-                    'id' => $prefix . 'home_featured_blocks1_2',
+                    'id' => $prefix . 'home_featured_blocks1_ministry',
                     'desc' => __("Enter the title for first featured block area", 'framework'),
                     'type' => 'hidden',
                     'std' => ''
                 ),
                 array(
                     'name' => __('Title for second featured block', 'framework'),
-                    'id' => $prefix . 'home_featured_blocks2_2',
+                    'id' => $prefix . 'home_featured_blocks2_ministry',
                     'desc' => __("Enter the title for second featured block area", 'framework'),
                     'type' => 'hidden',
                     'std' => ''
                 ),
                 array(
                     'name' => __('Title for third featured block', 'framework'),
-                    'id' => $prefix .'home_featured_blocks3_2',
+                    'id' => $prefix .'home_featured_blocks3_ministry',
+                    'desc' => __("Enter the title for third featured block area", 'framework'),
+                    'type' => 'hidden',
+                    'std' => ''
+                ),
+            ));
+
+        new RW_Meta_Box($meta_box);
+    }
+}
+
+/** SF Worship Meta Boxes */
+if (!function_exists('imic_register_sf_worship_meta_box')) {
+    add_action('admin_init', 'imic_register_sf_worship_meta_box');
+    function imic_register_sf_worship_meta_box() {
+        // Check if plugin is activated or included in theme
+        if (!class_exists('RW_Meta_Box'))
+            return;
+        $prefix = 'imic_';
+
+        $meta_box =  array(
+            'id' => 'template-home-sf-campus',
+            'title' => __('Featured SF Worships', 'framework'),
+            'pages' => array('page'),
+            'show' => array(
+                // With all conditions below, use this logical operator to combine them. Default is 'OR'. Case insensitive. Optional.
+                'relation' => 'OR',
+                // List of page templates (used for page only). Array. Optional.
+                'template' => array( 'template-home.php' ),
+            ),
+            'show_names' => true,
+            'fields' => array(
+                array(
+                    'name'      => __('Number of columns', 'framework'),
+                    'id'        => $prefix . 'imic_featured_block_num_rows_sf_campus',
+                    'desc'      => __('Number of columns', 'framework'),
+                    'type'      => 'select',
+                    'options'   => [
+                        '1' => __('1', 'framework'),
+                        '2' => __('2', 'framework'),
+                        '3' => __('3', 'framework'),
+                        '4' => __('4', 'framework'),
+                    ]
+                ),
+                array(
+                    'name' => __('Switch for featured blocks', 'framework'),
+                    'id' => $prefix . 'imic_featured_blocks_sf_campus',
+                    'desc' => __("Select enable or disable to show/hide featured blocks.", 'framework'),
+                    'type' => 'select',
+                    'options' => array(
+                        '1' => __('Enable', 'framework'),
+                        '2' => __('Disable', 'framework'),
+                    ),
+                    'std' => '1',
+                ),
+                array(
+                    'name' => __('Featured Blocks to show on home page', 'framework'),
+                    'id' => $prefix . 'home_featured_blocks_sf_campus',
+                    'desc' => __("Enter the Posts/Pages comma separated ID to show featured blocks on Home page. example - 1,2,3", 'framework'),
+                    'type' => 'text',
+                    'std' => ''
+                ),
+                array(
+                    'name' => __('Title for featured blocks', 'framework'),
+                    'id' => $prefix . 'home_row_featured_blocks_sf_campus',
+                    'desc' => __("Enter the title for featured blocks. Add more as per the entered page IDs", 'framework'),
+                    'type' => 'text',
+                    'clone' => true,
+                    'std' => ''
+                ),
+                array(
+                    'name' => __('Title for first featured block', 'framework'),
+                    'id' => $prefix . 'home_featured_blocks1_sf_campus',
+                    'desc' => __("Enter the title for first featured block area", 'framework'),
+                    'type' => 'hidden',
+                    'std' => ''
+                ),
+                array(
+                    'name' => __('Title for second featured block', 'framework'),
+                    'id' => $prefix . 'home_featured_blocks2_sf_campus',
+                    'desc' => __("Enter the title for second featured block area", 'framework'),
+                    'type' => 'hidden',
+                    'std' => ''
+                ),
+                array(
+                    'name' => __('Title for third featured block', 'framework'),
+                    'id' => $prefix .'home_featured_blocks3_sf_campus',
+                    'desc' => __("Enter the title for third featured block area", 'framework'),
+                    'type' => 'hidden',
+                    'std' => ''
+                ),
+            ));
+        new RW_Meta_Box($meta_box);
+    }
+}
+
+/** DC Worship Metaboxes */
+if (!function_exists('imic_register_dc_worship_meta_box')) {
+    add_action('admin_init', 'imic_register_dc_worship_meta_box');
+    function imic_register_dc_worship_meta_box() {
+        // Check if plugin is activated or included in theme
+        if (!class_exists('RW_Meta_Box'))
+            return;
+        $prefix = 'imic_';
+
+        $meta_box =  array(
+            'id' => 'template-home-dc-campus',
+            'title' => __('Featured Daly City Worships', 'framework'),
+            'pages' => array('page'),
+            'show' => array(
+                // With all conditions below, use this logical operator to combine them. Default is 'OR'. Case insensitive. Optional.
+                'relation' => 'OR',
+                // List of page templates (used for page only). Array. Optional.
+                'template' => array( 'template-home.php' ),
+            ),
+            'show_names' => true,
+            'fields' => array(
+                array(
+                    'name'      => __('Number of columns', 'framework'),
+                    'id'        => $prefix . 'imic_featured_block_num_rows_dc_campus',
+                    'desc'      => __('Number of columns', 'framework'),
+                    'type'      => 'select',
+                    'options'   => [
+                        '1' => __('1', 'framework'),
+                        '2' => __('2', 'framework'),
+                        '3' => __('3', 'framework'),
+                        '4' => __('4', 'framework'),
+                    ]
+                ),
+                array(
+                    'name' => __('Switch for featured blocks', 'framework'),
+                    'id' => $prefix . 'imic_featured_blocks_dc_campus',
+                    'desc' => __("Select enable or disable to show/hide featured blocks.", 'framework'),
+                    'type' => 'select',
+                    'options' => array(
+                        '1' => __('Enable', 'framework'),
+                        '2' => __('Disable', 'framework'),
+                    ),
+                    'std' => '1',
+                ),
+                array(
+                    'name' => __('Featured Blocks to show on home page', 'framework'),
+                    'id' => $prefix . 'home_featured_blocks_dc_campus',
+                    'desc' => __("Enter the Posts/Pages comma separated ID to show featured blocks on Home page. example - 1,2,3", 'framework'),
+                    'type' => 'text',
+                    'std' => ''
+                ),
+                array(
+                    'name' => __('Title for featured blocks', 'framework'),
+                    'id' => $prefix . 'home_row_featured_blocks_dc_campus',
+                    'desc' => __("Enter the title for featured blocks. Add more as per the entered page IDs", 'framework'),
+                    'type' => 'text',
+                    'clone' => true,
+                    'std' => ''
+                ),
+                array(
+                    'name' => __('Title for first featured block', 'framework'),
+                    'id' => $prefix . 'home_featured_blocks1_dc_campus',
+                    'desc' => __("Enter the title for first featured block area", 'framework'),
+                    'type' => 'hidden',
+                    'std' => ''
+                ),
+                array(
+                    'name' => __('Title for second featured block', 'framework'),
+                    'id' => $prefix . 'home_featured_blocks2_dc_campus',
+                    'desc' => __("Enter the title for second featured block area", 'framework'),
+                    'type' => 'hidden',
+                    'std' => ''
+                ),
+                array(
+                    'name' => __('Title for third featured block', 'framework'),
+                    'id' => $prefix .'home_featured_blocks3_dc_campus',
                     'desc' => __("Enter the title for third featured block area", 'framework'),
                     'type' => 'hidden',
                     'std' => ''
