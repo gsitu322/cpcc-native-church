@@ -1186,8 +1186,6 @@ $meta_boxes[] = array(
         ),
         ));
 
-
-
 /* * **Home Page Meta Box7 *** */
 $meta_boxes[] = array(
     'id' => 'template-home7',
