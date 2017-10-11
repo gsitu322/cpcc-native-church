@@ -39,9 +39,9 @@ $event_add = imic_recur_events('future','nos',$upcoming_events_category,'');
 		if($count_from==1) { $counter_time = date('G:i',$event_End_time); }
 		else { $counter_time = date('G:i',$eventTime); }
          if(preg_match('/^[0-9]+$/',$value)){
-       
+
 		if($eventTime!='') { $eventTime = date_i18n(get_option('time_format'),$eventTime); }
-		
+
 		  $eventStartTime =  strtotime(get_post_meta($value, 'imic_event_start_tm', true));
 		  $eventStartDate =  strtotime(get_post_meta($value, 'imic_event_start_dt', true));
 		  $eventEndTime   =  strtotime(get_post_meta($value, 'imic_event_end_tm', true));
@@ -50,7 +50,7 @@ $event_add = imic_recur_events('future','nos',$upcoming_events_category,'');
 		  $evstenddate    =  $eventStartDate.'|'.$eventEndDate;
 		  $event_dt_out   =  imic_get_event_timeformate( $evstendtime,$evstenddate,$value,$key);
 		  $event_dt_out   =  explode('BR',$event_dt_out);
-       
+
         $stime = '';
         $setime = '';
         if ($eventTime != '') {
@@ -58,7 +58,7 @@ $event_add = imic_recur_events('future','nos',$upcoming_events_category,'');
             $setime = $eventTime;
         }
         $date_converted=date('Y-m-d',$key );
-        $custom_event_url =imic_query_arg($date_converted,$value);  
+        $custom_event_url =imic_query_arg($date_converted,$value);
          $event_title=get_the_title($value);
         if ($nos_event == 1) {
             $firstEventTitle = $event_title;
@@ -70,7 +70,7 @@ $event_add = imic_recur_events('future','nos',$upcoming_events_category,'');
             $firstEventDateData = date('Y-m-d', $key) . ' ' . $counter_time;
          }}
          else{
-             $google_data =(explode('!',$value)); 
+             $google_data =(explode('!',$value));
             $event_title=$google_data[0];
            $custom_event_url=$google_data[1];
 		   if((date('G', $key))=='00')
@@ -90,7 +90,7 @@ $event_add = imic_recur_events('future','nos',$upcoming_events_category,'');
             $unix_time = strtotime($date_timer_event . ' ' . $eventTime);
             $time_timer_event = date('G:i', $unix_time);
             $firstEventDate = date_i18n( get_option( 'date_format' ),$key);
-			
+
 			$event_dt_out = imic_get_event_timeformate($key.'|'.strtotime($google_data[2]),$key.'|'.$key,$value,$key);
 			$event_dt_out = explode('BR',$event_dt_out);
         }
@@ -136,7 +136,7 @@ if ((!empty($firstEventTitle) && $imic_latest_sermon_events == 'letest_event')||
 <div class="notice-bar">
 <div class="container">
 <?php $imic_going_on_events = get_post_meta($home_id, 'imic_going_on_events', true);
-if($imic_going_on_events==2){ 
+if($imic_going_on_events==2){
 $event_add_going = imic_recur_events('future','nos','','');
 ksort($event_add_going);
 $currently_running = array();
@@ -179,19 +179,19 @@ $stime=date('G:i',$stime );
 if ($eventEndTime != '') {
 $etime = strtotime($eventEndTime);
 if(!empty($stime)){
-   $dash=' - '; 
+   $dash=' - ';
 }
 $etime=$dash.date('G:i',$etime);
 }
 if(!empty($stime)||!empty($etime)){
-$fa_clock='<i class="fa fa fa-clock-o"></i> ';  
+$fa_clock='<i class="fa fa fa-clock-o"></i> ';
 }
 $date_converted=date('Y-m-d',$key );
 $custom_event_url =imic_query_arg($date_converted,$value);
 $event_title=get_the_title($value);
 }
 else{
-            $google_data =(explode('!',$value)); 
+            $google_data =(explode('!',$value));
             $event_title=$google_data[0];
             $custom_event_url=$google_data[1];
            $dash=$fa_clock = $stime =$etime= '';
@@ -203,12 +203,12 @@ $eventEndTime=$google_data[2];
 if ($eventEndTime != '') {
 $etime = strtotime($eventEndTime);
 if(!empty($stime)){
-   $dash=' - '; 
+   $dash=' - ';
 }
 $etime=$dash.date('G:i',$etime);
 }
 if(!empty($stime)||!empty($etime)){
-$fa_clock='<i class="fa fa fa-clock-o"></i> ';  
+$fa_clock='<i class="fa fa fa-clock-o"></i> ';
 }}
 echo '<li>
 <a href="'.$custom_event_url.'"><strong class="title">' . $event_title . '</strong></a>
@@ -217,12 +217,12 @@ echo '<li>
 $going_nos_event++; } ?>
 </ul>
 </div>
-<?php echo '</div>';  } 
+<?php echo '</div>';  }
    $wp_query = clone $temp_wp_query; }?>
 <div class="row">
 <div class="col-md-3 col-sm-6 col-xs-6 notice-bar-title"> <span class="notice-bar-title-icon hidden-xs"><i class="fa fa-calendar fa-3x"></i></span> <span class="title-note"><?php _e('Next', 'framework'); ?></span> <strong><?php _e('Upcoming Event', 'framework'); ?></strong> </div>
 <div class="col-md-3 col-sm-6 col-xs-6 notice-bar-event-title">
-<?php 
+<?php
 $specific_event_data='';
 $event_category= get_post_meta($home_id,'imic_advanced_event_taxonomy','true');
 	if($event_category!=''){
@@ -290,7 +290,7 @@ endforeach;
                     foreach ($posts as $post) {
 					   $custom = get_post_custom(get_the_ID());
                       $attach_full_audio= imic_sermon_attach_full_audio($post->ID);
-                      
+
                       if(!empty($attach_full_audio)) {
 						  echo '<div class="col-md-7 col-sm-8 col-xs-12">';
 						  echo '<h5><a href="'.get_the_permalink().'">'.get_the_title().'</a></h5>, <span class="meta-data">'.get_the_time(get_option('date_format')).'</span>';
@@ -305,7 +305,7 @@ endforeach;
 <?php
                            } else {
 							echo '<div class="col-md-7 col-sm-8 col-xs-12">';
-                            echo '<h3><a href="'.get_permalink($post->ID).'">'.$post->post_title.'</a></h3>'; 
+                            echo '<h3><a href="'.get_permalink($post->ID).'">'.$post->post_title.'</a></h3>';
                        echo '</div>';
 						   }
                         $pages_s = get_pages(array(
@@ -334,7 +334,7 @@ else {
 }
 }
 ?>
-<!-- End Notice Bar --> 
+<!-- End Notice Bar -->
 <!-- Start Content -->
 <div class="main" role="main">
  <div id="content" class="content full">
@@ -342,12 +342,12 @@ else {
        <?php  wp_reset_query();
               if($post->post_content!="") :
 			  echo '<div class="page-content">';
-                              the_content();    
-				echo '</div>';    
+                              the_content();
+				echo '</div>';
                               echo '<div class="spacer-30"></div>';
-                      endif;	
+                      endif;
                ?>
-           <?php $imic_featured_block_area = get_post_meta($home_id,'imic_imic_featured_blocks',true);
+<?php $imic_featured_block_area = get_post_meta($home_id,'imic_imic_featured_blocks',true);
 if($imic_featured_block_area==1) { ?>
 <?php
 $imic_home_featured_blocks = get_post_meta($home_id,'imic_home_row_featured_blocks',true);
@@ -364,9 +364,29 @@ $i++;
 }
 ?>
 <?php } ?>
+
+
+<?php $numColumns = get_post_meta($home_id,'imic_imic_featured_block_num_rows_2',true); ?>
+<?php $imic_featured_block_area = get_post_meta($home_id,'imic_imic_featured_blocks_2',true);
+if($imic_featured_block_area==1) { ?>
+    <?php
+    $imic_home_featured_blocks = get_post_meta($home_id,'imic_home_row_featured_blocks_2',true);
+    $imic_home_featured_blocks_id = get_post_meta($home_id,'imic_home_featured_blocks_2',true);
+    $imic_home_featured_blocks_id = explode(',', $imic_home_featured_blocks_id);
+    $i = 0;
+
+    foreach ($imic_home_featured_blocks_id as $f_id) {
+        if(($i==0)||($i%$numColumns+1==0)) { echo '<div class="row"><div class="featured-blocks clearfix">'; }
+        $imic_custom_read_more = $imic_home_featured_blocks[$i];
+        imic_get_data_by_path($f_id, $imic_custom_read_more, $numColumns);
+        if((($i==$numColumns)||($i%$numColumns==$numColumns)||$i+1==count($imic_home_featured_blocks_id))&&(($i!=$numColumns+1)&&($i!=0))) { echo '</div></div>'; }
+        $i++;
+    }
+    ?>
+<?php } ?>
             <div class="row">
-                <div class="<?php echo $pageOptions['class']; ?> col-sm-6" id="content-col"> 
-                    <?php $imic_recent_events_area = get_post_meta($home_id,'imic_imic_upcoming_events',true); 
+                <div class="<?php echo $pageOptions['class']; ?> col-sm-6" id="content-col">
+                    <?php $imic_recent_events_area = get_post_meta($home_id,'imic_imic_upcoming_events',true);
 					if($imic_recent_events_area==1) { ?>
                     <!-- Events Listing -->
                     <div class="listing events-listing">
@@ -394,7 +414,7 @@ $i++;
                     $posts_per_page = get_post_meta($home_id, 'imic_posts_to_show_on', true);
 					$imic_recent_post_area = get_post_meta($home_id,'imic_imic_recent_posts',true);
 					  if($imic_recent_post_area==1) {
-                                            
+
                     if ($posts_per_page == '' ){$posts_per_page = 2;}
 										if(!empty($post_category))
 										{
@@ -463,7 +483,7 @@ $i++;
 														}
                                                         ?>
                                                     </div>
-                                                </div>   
+                                                </div>
                                         </li>
                                     <?php endwhile; ?>
                                 </ul>
@@ -476,7 +496,7 @@ $i++;
                 </div>
                 <?php if(!empty($pageOptions['sidebar'])){ ?>
                 <!-- Start Sidebar -->
-                <div class="col-md-4 col-sm-6" id="sidebar-col"> 
+                <div class="col-md-4 col-sm-6" id="sidebar-col">
                     <?php dynamic_sidebar($pageOptions['sidebar']); ?>
                 </div>
                 <!-- End Sidebar -->
@@ -495,7 +515,7 @@ $imic_imic_galleries = get_post_meta($home_id,'imic_imic_galleries',true);
 $posts_per_page = get_post_meta($home_id,'imic_galleries_to_show_on',true);
 $posts_per_page=!empty($posts_per_page)?$posts_per_page:3;
 $temp_wp_query = clone $wp_query;
-$gallery_bg_image_id = get_post_meta($home_id,'imic_galleries_background_image',true); 
+$gallery_bg_image_id = get_post_meta($home_id,'imic_galleries_background_image',true);
 $gallery_bg_image = wp_get_attachment_image_src($gallery_bg_image_id, 'full');
 query_posts(array(
     'post_type' => 'gallery',
@@ -611,8 +631,8 @@ if (have_posts()&&$imic_imic_galleries==1):
             </div>
         </div>
     </div>
-    <?php 
-endif; 
+    <?php
+endif;
 wp_reset_query();
 //-- End Featured Gallery --
 get_footer();
