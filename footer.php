@@ -8,9 +8,11 @@ $show_on_front = get_option('show_on_front');
 <?php $options = get_option('imic_options'); ?>
 <!-- Start PreFooter -->
 <?php if (is_active_sidebar('prefooter-sidebar')) : ?>
-    <div id="prefooter-widget-area" class="prefooter-widget-area widget-area" role="complementary">
+<div id="prefooter-widget-area" class="prefooter-widget-area widget-area" role="complementary">
+    <div class="container">
         <?php dynamic_sidebar('prefooter-sidebar'); ?>
     </div>
+</div>
 <?php endif; ?>
 
 
