@@ -347,43 +347,99 @@ else {
                               echo '<div class="spacer-30"></div>';
                       endif;
                ?>
-<?php $imic_featured_block_area = get_post_meta($home_id,'imic_imic_featured_blocks',true);
-if($imic_featured_block_area==1) { ?>
-<?php
-$imic_home_featured_blocks = get_post_meta($home_id,'imic_home_row_featured_blocks',true);
-$imic_home_featured_blocks_id = get_post_meta($home_id,'imic_home_featured_blocks',true);
-$imic_home_featured_blocks_id = explode(',', $imic_home_featured_blocks_id);
-$i = 0;
 
-foreach ($imic_home_featured_blocks_id as $f_id) {
-if(($i==0)||($i%4==0)) { echo '<div class="row"><div class="featured-blocks clearfix">'; }
-$imic_custom_read_more = $imic_home_featured_blocks[$i];
-imic_get_data_by_path($f_id, $imic_custom_read_more);
-if((($i==3)||($i%3==3)||$i+1==count($imic_home_featured_blocks_id))&&(($i!=4)&&($i!=0))) { echo '</div></div>'; }
-$i++;
-}
-?>
-<?php } ?>
+        <div class="row">
+            <div class="col-sm-9">
+                <header class="listing-header">
+                    <h3 class="text-center">San Francisco</h3>
+                </header>
+                <div class="listing-cont">
+                    <?php /** SF Campus */ ?>
+                    <?php $numColumns = get_post_meta($home_id,'imic_imic_featured_block_num_rows_sf_campus',true); ?>
+                    <?php $imic_featured_block_area = get_post_meta($home_id,'imic_imic_featured_blocks_sf_campus',true);
+                    if($imic_featured_block_area==1) { ?>
+                        <?php
+                        $imic_home_featured_blocks = get_post_meta($home_id,'imic_home_row_featured_blocks_sf_campus',true);
+                        $imic_home_featured_blocks_id = get_post_meta($home_id,'imic_home_featured_blocks_sf_campus',true);
+                        $imic_home_featured_blocks_id = explode(',', $imic_home_featured_blocks_id);
+                        $i = 0;
+
+                        foreach ($imic_home_featured_blocks_id as $f_id) {
+                            if ($i==0 || $i%3==0) {
+                                echo '<div class="row"><div class="featured-blocks clearfix">';
+                            }
+                            $imic_custom_read_more = $imic_home_featured_blocks[$i];
+                            imic_get_data_by_path($f_id, $imic_custom_read_more, $numColumns);
+
+                            if ($i + 1 == count($imic_home_featured_blocks_id) || $i == 2 || $i % 3 == 2) {
+                                echo "</div></div>";
+                            }
+
+                            $i++;
+                        }
+                        ?>
+                    <?php } ?>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <header class="listing-header">
+                    <h3 class="text-center">Daly City</h3>
+                </header>
+                <div class="listing-cont">
+                    <?php /** DC Campus */?>
+                    <?php //$numColumns = get_post_meta($home_id,'imic_imic_featured_block_num_rows_dc_campus',true); ?>
+                    <?php $imic_featured_block_area = get_post_meta($home_id,'imic_imic_featured_blocks_dc_campus',true);
+                    if($imic_featured_block_area==1) { ?>
+                        <?php
+                        $imic_home_featured_blocks = get_post_meta($home_id,'imic_home_row_featured_blocks_dc_campus',true);
+                        $imic_home_featured_blocks_id = get_post_meta($home_id,'imic_home_featured_blocks_dc_campus',true);
+                        $imic_home_featured_blocks_id = explode(',', $imic_home_featured_blocks_id);
+                        $i = 0;
+
+                        foreach ($imic_home_featured_blocks_id as $f_id) {
+                            if(($i==0)||($i%1==0)) { echo '<div class="row"><div class="featured-blocks clearfix">'; }
+                            $imic_custom_read_more = $imic_home_featured_blocks[$i];
+                            imic_get_data_by_path($f_id, $imic_custom_read_more, 12);
+                            if(($i%1==0)||$i+1==count($imic_home_featured_blocks_id)) { echo '</div></div>'; }
+                            $i++;
+                        }
+                        ?>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+        <div style="padding: 50px 0px 50px 0px; color: #000;">
+            <div class="text-center">
+                Contact Form
+            </div>
+        </div>
+
+          <header class="listing-header">
+                <h3 class="text-center">Ministries</h3>
+            </header>
+            <div class="listing-cont">
+                <?php /** Ministries */ ?>
+                <?php $numColumns = get_post_meta($home_id,'imic_imic_featured_block_num_rows_ministry',true); ?>
+                <?php $imic_featured_block_area = get_post_meta($home_id,'imic_imic_featured_blocks_ministry',true);
+                if($imic_featured_block_area==1) { ?>
+                    <?php
+                    $imic_home_featured_blocks = get_post_meta($home_id,'imic_home_row_featured_blocks_ministry',true);
+                    $imic_home_featured_blocks_id = get_post_meta($home_id,'imic_home_featured_blocks_ministry',true);
+                    $imic_home_featured_blocks_id = explode(',', $imic_home_featured_blocks_id);
+                    $i = 0;
+
+                    foreach ($imic_home_featured_blocks_id as $f_id) {
+                        if(($i==0)||($i%$numColumns+1==0)) { echo '<div class="row"><div class="featured-blocks clearfix">'; }
+                        $imic_custom_read_more = $imic_home_featured_blocks[$i];
+                        imic_get_data_by_path($f_id, $imic_custom_read_more, $numColumns);
+                        if((($i==$numColumns)||($i%$numColumns==$numColumns)||$i+1==count($imic_home_featured_blocks_id))&&(($i!=$numColumns+1)&&($i!=0))) { echo '</div></div>'; }
+                        $i++;
+                    }
+                    ?>
+                <?php } ?>
+            </div>
 
 
-<?php $numColumns = get_post_meta($home_id,'imic_imic_featured_block_num_rows_2',true); ?>
-<?php $imic_featured_block_area = get_post_meta($home_id,'imic_imic_featured_blocks_2',true);
-if($imic_featured_block_area==1) { ?>
-    <?php
-    $imic_home_featured_blocks = get_post_meta($home_id,'imic_home_row_featured_blocks_2',true);
-    $imic_home_featured_blocks_id = get_post_meta($home_id,'imic_home_featured_blocks_2',true);
-    $imic_home_featured_blocks_id = explode(',', $imic_home_featured_blocks_id);
-    $i = 0;
-
-    foreach ($imic_home_featured_blocks_id as $f_id) {
-        if(($i==0)||($i%$numColumns+1==0)) { echo '<div class="row"><div class="featured-blocks clearfix">'; }
-        $imic_custom_read_more = $imic_home_featured_blocks[$i];
-        imic_get_data_by_path($f_id, $imic_custom_read_more, $numColumns);
-        if((($i==$numColumns)||($i%$numColumns==$numColumns)||$i+1==count($imic_home_featured_blocks_id))&&(($i!=$numColumns+1)&&($i!=0))) { echo '</div></div>'; }
-        $i++;
-    }
-    ?>
-<?php } ?>
             <div class="row">
                 <div class="<?php echo $pageOptions['class']; ?> col-sm-6" id="content-col">
                     <?php $imic_recent_events_area = get_post_meta($home_id,'imic_imic_upcoming_events',true);
