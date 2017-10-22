@@ -62,6 +62,20 @@ function unregister_recent_sermon_widget()
 }
 require_once(dirname(__FILE__) . '/imic-framework/widgets/child_recent_sermons.php');
 
+function prefooter_sidebar()
+{
+    register_sidebar(array(
+        'name' => 'PreFooter Sidebar',
+        'id' => 'prefooter-sidebar',
+        'before_widget' => '<div class="prefooter-sidebar">',
+        'after_widget' => '</div>',
+        'before_title' => '<h2 class="prefooter-sidebar">',
+        'after_title' => '</h2>',
+    ));
+}
+
+add_action('widgets_init', 'prefooter_sidebar');
+
 /** Ministry Meta Boxes */
 if (!function_exists('imic_register_ministry_meta_box')) {
     add_action('admin_init', 'imic_register_ministry_meta_box');

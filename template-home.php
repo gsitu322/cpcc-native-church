@@ -408,11 +408,6 @@ else {
                 </div>
             </div>
         </div>
-        <div style="padding: 50px 0px 50px 0px; color: #000;">
-            <div class="text-center">
-                Contact Form
-            </div>
-        </div>
 
           <header class="listing-header">
                 <h3 class="text-center">Ministries</h3>

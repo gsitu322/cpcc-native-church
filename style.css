@@ -28,3 +28,32 @@
     font-size: 14px;
     margin-bottom: 0px;
 }
+
+/** Prefooter CSS **/
+.prefooter-widget-area {
+    padding-top: 30px;
+    padding-bottom: 50px;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+#get-connected-contact-form {
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+/** Extra **/
+.mTop0 { margin-top: 0 !important; }
+.mBottom5 { margin-bottom: 5px; }
+.mBottom10 { margin-bottom: 10px; }
+.mBottom20 { margin-bottom: 20px; }
+.mBottom30 { margin-bottom: 30px; }
+.mRight10 { margin-right: 10px; }
+
+.h60 { height: 60px; }
+
+/** Font Sizes **/
+.fs15 { font-size:15px; }
+.fs11 { font-size:11px; }
+
+.noDeco { text-decoration: none; }
