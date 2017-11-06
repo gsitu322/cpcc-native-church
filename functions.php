@@ -36,7 +36,8 @@ if (!function_exists('imic_get_data_by_path')) {
         $src = wp_get_attachment_image_src($slug_thumbnail_id, 'full');
         $read_More_text = !empty($imic_custom_read_more) ? $imic_custom_read_more : $slug_data->post_title;
         if (!empty($slug_thumbnail_id)) {
-            echo '<div class="col-sm-' . (12/$numItemsPerRow) . ' featured-block mBottom20">';
+            /** Force col-xs-6 for xs sizes to avoid adding extra config or doing calculations */
+            echo '<div class="col-xs-6 col-sm-' . (12/$numItemsPerRow) . ' featured-block mBottom20">';
             if ($post_type == 'event') {
                 $customeventSt = strtotime(get_post_meta($id, 'imic_event_start_dt', true));
                 $date_converted = date('Y-m-d', $customeventSt);
