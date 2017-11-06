@@ -57,3 +57,23 @@
 .fs11 { font-size:11px; }
 
 .noDeco { text-decoration: none; }
+
+.customFeaturedBlocks .featured-blocks .featured-block strong {
+    background-color: transparent;
+    background: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width:100%;
+    height:fit-content;
+}
+
+.customFeaturedBlocks .featured-block .img-thumbnail:hover {
+     opacity: .7;
+}
+
+.customFeaturedBlocks .featured-blocks .featured-block .more {
+    display: none;
+}
