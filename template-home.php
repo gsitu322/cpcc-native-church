@@ -355,12 +355,12 @@ else {
                 </header>
                 <div class="listing-cont">
                     <?php /** SF Campus */ ?>
-                    <?php $imic_featured_block_area = get_post_meta($home_id,'imic_imic_featured_blocks_sf_campus',true);
-                    if($imic_featured_block_area==1) { ?>
+                    <?php $imic_featured_block_area = get_post_meta($home_id, 'imic_imic_featured_blocks_sf_campus', true);
+                    if ($imic_featured_block_area == 1) { ?>
                         <?php
-                        $numItemsPerRow = get_post_meta($home_id,'imic_imic_featured_block_num_items_per_row_sf_campus',true);
-                        $imic_home_featured_blocks = get_post_meta($home_id,'imic_home_row_featured_blocks_sf_campus',true);
-                        $imic_home_featured_blocks_id = get_post_meta($home_id,'imic_home_featured_blocks_sf_campus',true);
+                        $numItemsPerRow = get_post_meta($home_id, 'imic_imic_featured_block_num_items_per_row_sf_campus', true);
+                        $imic_home_featured_blocks = get_post_meta($home_id, 'imic_home_row_featured_blocks_sf_campus', true);
+                        $imic_home_featured_blocks_id = get_post_meta($home_id, 'imic_home_featured_blocks_sf_campus', true);
                         $imic_home_featured_blocks_id = explode(',', $imic_home_featured_blocks_id);
                         $i = 0;
 
@@ -381,13 +381,13 @@ else {
                     <h3 class="text-center">Daly City</h3>
                 </header>
                 <div class="listing-cont">
-                    <?php /** DC Campus */?>
-                    <?php $imic_featured_block_area = get_post_meta($home_id,'imic_imic_featured_block_num_items_per_row_dc_campus',true);
-                    if($imic_featured_block_area==1) { ?>
+                    <?php /** DC Campus */ ?>
+                    <?php $imic_featured_block_area = get_post_meta($home_id, 'imic_imic_featured_block_num_items_per_row_dc_campus', true);
+                    if ($imic_featured_block_area == 1) { ?>
                         <?php
-                        $numItemsPerRow = get_post_meta($home_id,'imic_imic_featured_block_num_rows_dc_campus',true);
-                        $imic_home_featured_blocks = get_post_meta($home_id,'imic_home_row_featured_blocks_dc_campus',true);
-                        $imic_home_featured_blocks_id = get_post_meta($home_id,'imic_home_featured_blocks_dc_campus',true);
+                        $numItemsPerRow = get_post_meta($home_id, 'imic_imic_featured_block_num_rows_dc_campus', true);
+                        $imic_home_featured_blocks = get_post_meta($home_id, 'imic_home_row_featured_blocks_dc_campus', true);
+                        $imic_home_featured_blocks_id = get_post_meta($home_id, 'imic_home_featured_blocks_dc_campus', true);
                         $imic_home_featured_blocks_id = explode(',', $imic_home_featured_blocks_id);
                         $i = 0;
 
@@ -405,33 +405,33 @@ else {
             </div>
         </div>
 
-          <header class="listing-header">
-                <h3 class="text-center">Ministries</h3>
-            </header>
-            <div class="listing-cont">
-                <?php /** Ministries */ ?>
-                <?php $imic_featured_block_area = get_post_meta($home_id,'imic_imic_featured_blocks_ministry',true);
-                if($imic_featured_block_area==1) { ?>
-                    <?php
-                    $numItemsPerRow = get_post_meta($home_id,'imic_imic_featured_block_num_items_per_row_ministry',true);
-                    $imic_home_featured_blocks = get_post_meta($home_id,'imic_home_row_featured_blocks_ministry',true);
-                    $imic_home_featured_blocks_id = get_post_meta($home_id,'imic_home_featured_blocks_ministry',true);
-                    $imic_home_featured_blocks_id = explode(',', $imic_home_featured_blocks_id);
-                    $i = 0;
+        <header class="listing-header">
+            <h3 class="text-center">Ministries</h3>
+        </header>
+        <div class="listing-cont">
+            <?php /** Ministries */ ?>
+            <?php $imic_featured_block_area = get_post_meta($home_id, 'imic_imic_featured_blocks_ministry', true);
+            if ($imic_featured_block_area == 1) { ?>
+                <?php
+                $numItemsPerRow = get_post_meta($home_id, 'imic_imic_featured_block_num_items_per_row_ministry', true);
+                $imic_home_featured_blocks = get_post_meta($home_id, 'imic_home_row_featured_blocks_ministry', true);
+                $imic_home_featured_blocks_id = get_post_meta($home_id, 'imic_home_featured_blocks_ministry', true);
+                $imic_home_featured_blocks_id = explode(',', $imic_home_featured_blocks_id);
+                $i = 0;
 
-                    echo '<div class="row"><div class="featured-blocks clearfix">';
-                    foreach ($imic_home_featured_blocks_id as $f_id) {
-                        $imic_custom_read_more = $imic_home_featured_blocks[$i];
-                        imic_get_data_by_path($f_id, $imic_custom_read_more, $numItemsPerRow);
-                        $i++;
-                    }
-                    echo '</div></div>';
-                    ?>
-                <?php } ?>
-            </div>
+                echo '<div class="row"><div class="featured-blocks clearfix">';
+                foreach ($imic_home_featured_blocks_id as $f_id) {
+                    $imic_custom_read_more = $imic_home_featured_blocks[$i];
+                    imic_get_data_by_path($f_id, $imic_custom_read_more, $numItemsPerRow);
+                    $i++;
+                }
+                echo '</div></div>';
+                ?>
+            <?php } ?>
+        </div>
 
 
-            <div class="row">
+        <div class="row">
                 <div class="<?php echo $pageOptions['class']; ?> col-sm-6" id="content-col">
                     <?php $imic_recent_events_area = get_post_meta($home_id,'imic_imic_upcoming_events',true);
 					if($imic_recent_events_area==1) { ?>
