@@ -29,14 +29,14 @@ function nativechurch_child_scripts() {
 add_action( 'wp_enqueue_scripts', 'nativechurch_child_scripts' );
 
 if (!function_exists('imic_get_data_by_path')) {
-    function imic_get_data_by_path($id, $imic_custom_read_more, $numColumns = 3) {
+    function imic_get_data_by_path($id, $imic_custom_read_more, $numItemsPerRow = 3) {
         $slug_data = get_post($id);
         $post_type = get_post_type($id);
         $slug_thumbnail_id = get_post_meta($id, '_thumbnail_id', 'true');
         $src = wp_get_attachment_image_src($slug_thumbnail_id, 'full');
         $read_More_text = !empty($imic_custom_read_more) ? $imic_custom_read_more : $slug_data->post_title;
         if (!empty($slug_thumbnail_id)) {
-            echo '<div class="col-md-' . $numColumns . ' col-sm-' . $numColumns . ' featured-block">';
+            echo '<div class="col-sm-' . (12/$numItemsPerRow) . ' featured-block">';
             if ($post_type == 'event') {
                 $customeventSt = strtotime(get_post_meta($id, 'imic_event_start_dt', true));
                 $date_converted = date('Y-m-d', $customeventSt);
@@ -99,9 +99,9 @@ if (!function_exists('imic_register_ministry_meta_box')) {
             'show_names' => true,
             'fields' => array(
                 array(
-                    'name'      => __('Number of columns', 'framework'),
-                    'id'        => $prefix . 'imic_featured_block_num_rows_ministry',
-                    'desc'      => __('Number of columns', 'framework'),
+                    'name'      => __('Number of items per row', 'framework'),
+                    'id'        => $prefix . 'imic_featured_block_num_items_per_row_ministry',
+                    'desc'      => __('Number of items per row', 'framework'),
                     'type'      => 'select',
                     'options'   => [
                         '1' => __('1', 'framework'),
@@ -185,9 +185,9 @@ if (!function_exists('imic_register_sf_worship_meta_box')) {
             'show_names' => true,
             'fields' => array(
                 array(
-                    'name'      => __('Number of columns', 'framework'),
-                    'id'        => $prefix . 'imic_featured_block_num_rows_sf_campus',
-                    'desc'      => __('Number of columns', 'framework'),
+                    'name'      => __('Number of items per row', 'framework'),
+                    'id'        => $prefix . 'imic_featured_block_num_items_per_row_sf_campus',
+                    'desc'      => __('Number of items per row', 'framework'),
                     'type'      => 'select',
                     'options'   => [
                         '1' => __('1', 'framework'),
@@ -270,9 +270,9 @@ if (!function_exists('imic_register_dc_worship_meta_box')) {
             'show_names' => true,
             'fields' => array(
                 array(
-                    'name'      => __('Number of columns', 'framework'),
-                    'id'        => $prefix . 'imic_featured_block_num_rows_dc_campus',
-                    'desc'      => __('Number of columns', 'framework'),
+                    'name'      => __('Number of items per row', 'framework'),
+                    'id'        => $prefix . 'imic_featured_block_num_items_per_row_dc_campus',
+                    'desc'      => __('Number of items per row', 'framework'),
                     'type'      => 'select',
                     'options'   => [
                         '1' => __('1', 'framework'),
