@@ -333,3 +333,5 @@ if (!function_exists('imic_register_dc_worship_meta_box')) {
         new RW_Meta_Box($meta_box);
     }
 }
+
+include 'CPCC/sermonPassagesMetaBoxes.php';
