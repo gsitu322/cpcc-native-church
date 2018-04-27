@@ -1,4 +1,6 @@
 <?php
+define('CHILD_THEME_DIRECTORY', __dir__);
+
 /**
  *
  * Native Church child theme functions and definitions
